@@ -1,0 +1,28 @@
+<h1 style="color:blue">Product survey</h1>
+
+<h4 style="color:green">Applied Expert Systems is gathering user information applicable to the CLEVERDetect solution.<br>Please provide detail review to help us putting together a case study paper.</h4>
+
+<div>
+<ol> 
+	<li>Please describe engineering goal(s) in which CLEVERDetect is being used for.</li>
+	<ul>
+		{% for survey_item in survey_items %}
+			<li>{{ survey_item.content }}
+				<form action="/deleteSurvey/{{ survey_item.id }}/" style="display: inline;" method="post">{% csrf_token %}
+					<input type="submit" value="Delete"/>
+				</form>
+			</li>
+		{% endfor %}
+	</ul>	
+</ol>
+</div>
+
+
+<form action="/addSurvey/" method="post">{% csrf_token %}
+	<input type="text" name="content"/>
+<!--
+	<input type="char" name="entry_name"/>
+	<input type="char" name="entry_date"/>
+-->
+	<input style="italic" type="submit" value="Add"/>
+</form>

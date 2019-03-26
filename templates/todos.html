@@ -1,0 +1,23 @@
+<h1>Customer Survey</h1>
+<h3 style="color:blue">We are gathering practical information applicable to our CLEVERDetect solution. Please provide detail information to help us putting together a case study paper.</h3>
+
+<div>
+<ol> 
+	<li>Please describe engineering goal(s) in which CLEVERDetect is being used for.</li>
+	<ul>
+		{% for todo_item in all_items %}
+			<li>{{ todo_item.content }}
+				<form action="/deleteTodo/{{ todo_item.id }}/" style="display: inline;" method="post">{% csrf_token %}
+					<input type="submit" value="Delete"/>
+				</form>
+			</li>
+		{% endfor %}
+	</ul>	
+</ol>
+</div>
+
+
+<form action="/addTodo/" method="post">{% csrf_token %}
+	<input type="text" name="content"/>
+	<input type="submit" value="Add"/>
+</form>
